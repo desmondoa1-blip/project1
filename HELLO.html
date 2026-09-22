@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ghana — Akwaaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#1b120b;
+    --ink-deep:#120c07;
+    --gold:#d9a53c;
+    --gold-dim:#a9822f;
+    --clay:#b4472e;
+    --forest:#2a5a41;
+    --parchment:#f1e6cf;
+    --parchment-dim:#cbbfa2;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{
+    margin:0;
+    background:var(--ink);
+    color:var(--parchment);
+    font-family:'Karla',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  body{overflow-x:hidden;}
+
+  h1,h2,h3,.display{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:700;
+    color:var(--parchment);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:var(--gold);}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,64px);
+  }
+
+  /* ---------- stripe pattern, used sparingly ---------- */
+  .stripes{
+    background:repeating-linear-gradient(
+      100deg,
+      var(--clay) 0px, var(--clay) 10px,
+      var(--gold) 10px, var(--gold) 16px,
+      var(--forest) 16px, var(--forest) 24px,
+      var(--ink-deep) 24px, var(--ink-deep) 46px,
+      var(--gold-dim) 46px, var(--gold-dim) 50px,
+      var(--ink-deep) 50px, var(--ink-deep) 70px
+    );
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:20;
+    padding-top:calc(env(safe-area-inset-top,0px) + 14px);
+    background:rgba(27,18,11,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(217,165,60,0.18);
+  }
+  .navrow{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-bottom:14px;
+  }
+  .brand{font-family:'Bricolage Grotesque'; font-weight:700; font-size:1.05rem; letter-spacing:0.01em;}
+  .brand span{color:var(--gold);}
+  nav ul{list-style:none; display:flex; gap:26px; margin:0; padding:0;}
+  nav a{color:var(--parchment-dim); text-decoration:none; font-size:0.92rem;}
+  nav a:hover{color:var(--gold);}
+  @media(max-width:640px){ nav{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    align-items:stretch;
+    min-height:min(86vh,760px);
+    border-bottom:1px solid rgba(217,165,60,0.18);
+  }
+  @media(max-width:860px){ .hero{grid-template-columns:1fr; min-height:auto;} }
+
+  .hero-text{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:clamp(40px,7vw,30px) clamp(20px,5vw,64px);
+    gap:22px;
+  }
+  .kicker{
+    font-size:0.95rem; color:var(--gold);
+    font-family:'Karla'; font-style:italic; font-weight:500;
+  }
+  .hero-text h1{
+    font-size:clamp(3.2rem,9vw,6.4rem);
+    line-height:0.92;
+  }
+  .hero-text p.lede{
+    max-width:44ch;
+    font-size:1.12rem;
+    line-height:1.6;
+    color:var(--parchment-dim);
+  }
+  .factrow{
+    display:flex; flex-wrap:wrap; gap:28px;
+    margin-top:8px;
+    padding-top:22px;
+    border-top:1px solid rgba(217,165,60,0.22);
+  }
+  .factrow div{min-width:110px;}
+  .factrow .num{
+    font-family:'Bricolage Grotesque'; font-weight:700;
+    font-size:1.4rem; color:var(--parchment);
+    display:block;
+  }
+  .factrow .lab{font-size:0.82rem; color:var(--parchment-dim);}
+
+  .hero-visual{
+    position:relative;
+    overflow:hidden;
+    min-height:280px;
+  }
+  .hero-visual .stripes{
+    position:absolute; inset:-10% -10%;
+    animation:driftstripes 40s linear infinite;
+  }
+  @keyframes driftstripes{
+    0%{ transform:translate(0,0); }
+    100%{ transform:translate(-140px,60px); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .hero-visual .stripes{ animation:none; }
+  }
+  .hero-visual::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--ink) 0%, rgba(27,18,11,0.05) 22%);
+  }
+  .star{
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:clamp(80px,14vw,150px); height:clamp(80px,14vw,150px);
+    fill:var(--ink-deep);
+    filter:drop-shadow(0 0 0 rgba(0,0,0,0));
+    z-index:2;
+  }
+
+  /* ---------- section shell ---------- */
+  section{ padding:clamp(64px,9vw,108px) 0; }
+  .eyebrow-row{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:14px;
+  }
+  .section-index{
+    font-family:'Bricolage Grotesque'; font-weight:700;
+    color:var(--gold-dim); font-size:0.95rem;
+  }
+  h2.section-title{
+    font-size:clamp(2rem,4vw,2.7rem);
+    max-width:16ch;
+  }
+  .section-sub{
+    max-width:60ch; color:var(--parchment-dim);
+    font-size:1.02rem; line-height:1.65;
+    margin-top:14px;
+  }
+  hr.rule{
+    border:none; border-top:1px solid rgba(217,165,60,0.2);
+    margin:0;
+  }
+
+  /* ---------- regions ---------- */
+  .regions{
+    margin-top:42px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:1px;
+    background:rgba(217,165,60,0.2);
+    border:1px solid rgba(217,165,60,0.2);
+  }
+  .region-card{
+    background:var(--ink);
+    padding:26px 22px;
+    border-left:4px solid var(--clay);
+  }
+  .region-card:nth-child(4n+2){border-left-color:var(--gold);}
+  .region-card:nth-child(4n+3){border-left-color:var(--forest);}
+  .region-card:nth-child(4n+4){border-left-color:var(--gold-dim);}
+  .region-card h3{font-size:1.15rem; margin-bottom:8px; font-weight:700;}
+  .region-card p{margin:0; font-size:0.92rem; color:var(--parchment-dim); line-height:1.55;}
+
+  /* ---------- timeline ---------- */
+  .timeline{
+    margin-top:48px;
+    position:relative;
+    padding-left:40px;
+    border-left:1px solid rgba(217,165,60,0.3);
+  }
+  .tl-item{
+    position:relative;
+    padding-bottom:44px;
+  }
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute; left:-45px; top:4px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 0 4px var(--ink), 0 0 0 5px rgba(217,165,60,0.4);
+  }
+  .tl-year{
+    font-family:'Bricolage Grotesque'; font-weight:700;
+    color:var(--gold); font-size:1.05rem; margin-bottom:6px;
+  }
+  .tl-item p{margin:0; color:var(--parchment-dim); max-width:58ch; line-height:1.6;}
+
+  /* ---------- culture / symbols ---------- */
+  .culture-grid{
+    margin-top:44px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+  }
+  @media(max-width:800px){ .culture-grid{grid-template-columns:1fr; gap:48px;} }
+
+  .symbol-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+    margin-top:10px;
+  }
+  .symbol{
+    text-align:center;
+  }
+  .symbol svg{width:56px; height:56px; margin-bottom:10px;}
+  .symbol .sname{font-weight:600; font-size:0.9rem; color:var(--parchment);}
+  .symbol .smean{font-size:0.78rem; color:var(--parchment-dim); margin-top:2px;}
+
+  .weave-block{
+    height:200px;
+    border-radius:2px;
+    overflow:hidden;
+    position:relative;
+    border:1px solid rgba(217,165,60,0.25);
+  }
+
+  /* ---------- food ---------- */
+  .food-list{
+    margin-top:44px;
+    display:grid;
+    gap:0;
+    border-top:1px solid rgba(217,165,60,0.2);
+  }
+  .food-row{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:28px;
+    padding:22px 0;
+    border-bottom:1px solid rgba(217,165,60,0.2);
+    align-items:baseline;
+  }
+  @media(max-width:640px){ .food-row{grid-template-columns:1fr; gap:6px;} }
+  .food-row h3{font-size:1.2rem;}
+  .food-row p{margin:0; color:var(--parchment-dim); font-size:0.95rem; line-height:1.6; max-width:60ch;}
+
+  /* ---------- closing ---------- */
+  .closing{
+    text-align:left;
+    position:relative;
+    overflow:hidden;
+  }
+  .closing .stripes{
+    position:absolute; inset:0;
+    opacity:0.16;
+  }
+  .closing-inner{position:relative; z-index:1; padding:clamp(60px,10vw,100px) 0;}
+  .closing h2{
+    font-size:clamp(2.2rem,6vw,4rem);
+    max-width:14ch;
+    line-height:1.05;
+  }
+  .closing p{
+    margin-top:18px;
+    max-width:52ch;
+    color:var(--parchment-dim);
+    font-size:1.05rem;
+    line-height:1.65;
+  }
+
+  footer{
+    padding:28px clamp(20px,5vw,64px);
+    padding-bottom:calc(28px + env(safe-area-inset-bottom,0px));
+    border-top:1px solid rgba(217,165,60,0.18);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:0.82rem; color:var(--parchment-dim);
+  }
+
+  :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navrow">
+    <div class="brand">Akwaaba <span>/ Ghana</span></div>
+    <nav>
+      <ul>
+        <li><a href="#regions">Regions</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#culture">Culture</a></li>
+        <li><a href="#food">Food</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding:0;">
+  <div class="hero-text">
+    <span class="kicker">West Africa, Gulf of Guinea coast</span>
+    <h1>Ghana</h1>
+    <p class="lede">A coastline of old trading forts, a interior of gold-bearing forest and savanna, and a republic built by the first sub-Saharan nation to throw off colonial rule. This is the short version of a long story.</p>
+    <div class="factrow">
+      <div><span class="num">35.6M</span><span class="lab">people, 2026 est.</span></div>
+      <div><span class="num">16</span><span class="lab">regions</span></div>
+      <div><span class="num">1957</span><span class="lab">independence</span></div>
+      <div><span class="num">Accra</span><span class="lab">capital</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stripes"></div>
+    <svg class="star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="50,4 61,37 96,37 68,58 79,92 50,71 21,92 32,58 4,37 39,37"/>
+    </svg>
+  </div>
+</section>
+
+<section id="regions">
+  <div class="wrap">
+    <div class="eyebrow-row"><span class="section-index">01</span></div>
+    <h2 class="section-title">One coast, many interiors</h2>
+    <p class="section-sub">Ghana is organised into sixteen regions, each with its own dominant language, landscape and history. A few of the ones travellers and Ghanaians alike talk about most:</p>
+    <div class="regions">
+      <div class="region-card">
+        <h3>Greater Accra</h3>
+        <p>The capital region — Atlantic beaches, the Ga fishing communities, and the political and commercial centre of the country.</p>
+      </div>
+      <div class="region-card">
+        <h3>Ashanti</h3>
+        <p>Home of the historic Ashanti Kingdom and its capital Kumasi, still the seat of the Asantehene and the Golden Stool.</p>
+      </div>
+      <div class="region-card">
+        <h3>Central</h3>
+        <p>Cape Coast and Elmina, where centuries-old coastal forts stand as UNESCO World Heritage sites and sites of memory.</p>
+      </div>
+      <div class="region-card">
+        <h3>Volta</h3>
+        <p>Hilly, lake-bound territory along the Togo border, largely Ewe-speaking, known for waterfalls and Kente weaving towns.</p>
+      </div>
+      <div class="region-card">
+        <h3>Northern</h3>
+        <p>Savanna country centred on Tamale, with its own chieftaincy traditions distinct from the forest south.</p>
+      </div>
+      <div class="region-card">
+        <h3>Western</h3>
+        <p>Rainforest and rubber, cocoa and offshore oil — Ghana's timber and energy frontier along the coast to Côte d'Ivoire.</p>
+      </div>
+      <div class="region-card">
+        <h3>Eastern</h3>
+        <p>Akan heartland threaded by the Akwapim ridge, and home to Lake Volta, one of the largest man-made lakes on earth.</p>
+      </div>
+      <div class="region-card">
+        <h3>Upper East &amp; West</h3>
+        <p>Ghana's Sahel edge — mud-built architecture, Sirigu wall painting, and a dry-season landscape unlike anywhere else in the country.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="history">
+  <div class="wrap">
+    <div class="eyebrow-row"><span class="section-index">02</span></div>
+    <h2 class="section-title">How the republic was made</h2>
+    <p class="section-sub">Ghana's modern story runs from a gold and trade frontier called the "Gold Coast" by Europeans, through the rise and resistance of the Ashanti Kingdom, to independence and everything after.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">Before the 1400s</div>
+        <p>Akan, Ga, Ewe and other peoples build kingdoms and trading states across the forest and savanna, with gold and kola nut moving along trans-Saharan routes long before Europeans arrive by sea.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1400s–1800s</div>
+        <p>Portuguese, Dutch, British and other traders build coastal forts and castles to trade gold — and, from the 1500s, enslaved people. The Ashanti Kingdom rises inland as the region's dominant power, ruled through the Golden Stool.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1874–1957</div>
+        <p>Britain formalises the "Gold Coast" as a colony after decades of Anglo-Ashanti wars. A growing independence movement, led by Kwame Nkrumah and others, presses for self-rule through the 1940s and 50s.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">6 March 1957</div>
+        <p>The Gold Coast becomes Ghana — the first country in Sub-Saharan Africa to gain independence from colonial rule, taking its new name from the medieval Ghana Empire further north and west.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1960 onward</div>
+        <p>Ghana becomes a republic in 1960, moves through periods of military and civilian rule, and settles into multiparty democracy from 1992, with regular elections and peaceful transfers of power since.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Today</div>
+        <p>Ghana is a stable multiparty republic under President John Mahama, and one of the more consistently peaceful democracies in the region.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="culture">
+  <div class="wrap">
+    <div class="eyebrow-row"><span class="section-index">03</span></div>
+    <h2 class="section-title">Cloth, symbol, and sound</h2>
+    <p class="section-sub">Ghanaian culture carries its own visual and musical language — much of it still made and worn every day, not kept behind glass.</p>
+
+    <div class="culture-grid">
+      <div>
+        <h3 style="font-size:1.3rem; margin-bottom:12px;">Kente</h3>
+        <p style="color:var(--parchment-dim); line-height:1.65; font-size:0.96rem;">Woven by Akan and Ewe weavers on narrow looms, Kente cloth is built from strips of geometric pattern stitched together — each pattern and colour combination carries its own name and meaning, worn for festivals, funerals, and formal occasions.</p>
+        <div class="weave-block">
+          <div class="stripes" style="position:absolute; inset:0;"></div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size:1.3rem; margin-bottom:12px;">Adinkra symbols</h3>
+        <p style="color:var(--parchment-dim); line-height:1.65; font-size:0.96rem; margin-bottom:6px;">Originally stamped onto funeral cloth by Akan communities, these symbols now appear everywhere from architecture to jewellery — each one a compressed proverb.</p>
+        <div class="symbol-grid">
+          <div class="symbol">
+            <svg viewBox="0 0 60 60" fill="none" stroke="var(--gold)" stroke-width="3"><path d="M30 6 C14 6 14 30 30 30 C46 30 46 54 30 54"/><circle cx="30" cy="6" r="3" fill="var(--gold)"/></svg>
+            <div class="sname">Sankofa</div>
+            <div class="smean">go back and reclaim it</div>
+          </div>
+          <div class="symbol">
+            <svg viewBox="0 0 60 60" fill="none" stroke="var(--clay)" stroke-width="3"><rect x="12" y="12" width="36" height="36" rx="2"/><path d="M12 30 H48 M30 12 V48"/></svg>
+            <div class="sname">Dwennimmen</div>
+            <div class="smean">strength with humility</div>
+          </div>
+          <div class="symbol">
+            <svg viewBox="0 0 60 60" fill="none" stroke="var(--forest)" stroke-width="3"><path d="M30 8 L52 30 L30 52 L8 30 Z"/><path d="M30 20 L40 30 L30 40 L20 30 Z"/></svg>
+            <div class="sname">Gye Nyame</div>
+            <div class="smean">except for God</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:56px; display:grid; grid-template-columns:1fr 1fr; gap:64px;">
+      <div>
+        <h3 style="font-size:1.3rem; margin-bottom:12px;">Music</h3>
+        <p style="color:var(--parchment-dim); line-height:1.65; font-size:0.96rem;">Highlife — guitar and horn-driven dance music born in the early 20th century — is Ghana's signature export, still audible under hiplife, azonto and the Afrobeats acts that followed it.</p>
+      </div>
+      <div>
+        <h3 style="font-size:1.3rem; margin-bottom:12px;">Chieftaincy &amp; festival</h3>
+        <p style="color:var(--parchment-dim); line-height:1.65; font-size:0.96rem;">Traditional chiefs still hold real civic weight alongside elected government. Festivals like Homowo (Ga), Akwasidae (Ashanti) and Hogbetsotso (Ewe) mark the ceremonial calendar with drumming, durbars, and remembrance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="food">
+  <div class="wrap">
+    <div class="eyebrow-row"><span class="section-index">04</span></div>
+    <h2 class="section-title">What's on the plate</h2>
+    <p class="section-sub">Ghanaian cooking runs on starch, pepper, and slow-built stock — built to be eaten by hand, shared, and argued about (everyone has an opinion on whose jollof is best).</p>
+    <div class="food-list">
+      <div class="food-row">
+        <h3>Jollof rice</h3>
+        <p>Rice slow-cooked in a tomato-pepper base until every grain takes on colour and smoke — the centrepiece of most Ghanaian celebrations, and one side of a long-running rivalry with Nigerian jollof.</p>
+      </div>
+      <div class="food-row">
+        <h3>Waakye</h3>
+        <p>Rice and beans cooked together with dried millet leaves for their deep red-brown colour, served street-side with gari, spaghetti, boiled egg, and a fiery shito pepper sauce.</p>
+      </div>
+      <div class="food-row">
+        <h3>Banku &amp; tilapia</h3>
+        <p>Fermented corn and cassava dough, pounded smooth, eaten by hand alongside grilled tilapia and a hot pepper-and-onion sauce.</p>
+      </div>
+      <div class="food-row">
+        <h3>Fufu &amp; light soup</h3>
+        <p>Pounded cassava and plantain, dense and stretchy, torn off and dipped into a peppery, tomato-based soup with goat, chicken, or fish.</p>
+      </div>
+      <div class="food-row">
+        <h3>Red red &amp; kelewele</h3>
+        <p>Black-eyed peas stewed in red palm oil, usually served beside fried ripe plantain — kelewele's version comes seasoned with ginger, pepper, and cloves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="stripes"></div>
+  <div class="wrap closing-inner">
+    <h2>Akwaaba.</h2>
+    <p>It's the first word most visitors learn, and the one Ghanaians use most — a welcome that shows up on shop signs, church banners, and doorframes across the country, extended long before it's asked for.</p>
+  </div>
+</section>
+
+<footer>
+  <div>Ghana, West Africa · Republic of Ghana</div>
+  <div>Capital: Accra · Currency: Ghana cedi (GH₵) · Independence: 6 March 1957</div>
+</footer>
+
+</body>
+</html>
